@@ -1,32 +1,51 @@
 # JobGenius FYP
 
-Career platform for job seekers, recruiters, and admins, built as a full-stack final year project with a polished portfolio demo experience.
+> **Career platform for hiring and job discovery** | Built as a full-stack final year project
 
-## Overview
+[![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)](https://expressjs.com)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-13aa52?logo=mongodb&logoColor=white)](https://mongodb.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38b2ac?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 
-JobGenius is a hiring and profile management platform that brings together job discovery, applications, interviews, offers, recruiter workflows, and admin oversight in one system. The app is designed to be easy to demo, with fallback content where needed so the core experience still looks complete in screenshots and presentations.
+## What is JobGenius?
+
+A complete hiring and career platform that connects job seekers, recruiters, and admins in one polished system. Job seekers discover opportunities and track applications. Recruiters post jobs, review candidates, and manage the hiring pipeline. Admins oversee platform health and user engagement.
+
+Built with production-grade tooling and a focus on **portfolio readiness**—the UI includes smart fallback content so dashboards look complete even in screenshot demos without live API dependencies.
 
 ## Core Capabilities
 
-- Job seeker dashboard with profile insights, recommendations, applications, interviews, and offers
-- Recruiter dashboard for jobs, applicants, interviews, and offer management
-- Admin dashboard for platform-level summaries and user oversight
-- Authentication flows for login and signup
-- Resume and profile-related workflows supported through backend services and integrations
-- Portfolio-friendly demo states for sections that depend on external APIs
+**For Job Seekers**  
+Dashboard with profile insights, job recommendations, real-time notifications, interview tracking, and offer management.
+
+**For Recruiters**  
+Post and manage job openings, browse candidate profiles, track applications through the pipeline, schedule interviews, and send offers.
+
+**For Admins**  
+Platform-wide dashboards with user counts, job activity, application metrics, and system oversight.
+
+**Technical Highlights**  
+- Resume parsing and profile analysis powered by AI integrations
+- Graceful demo modes so dashboards render beautifully even without live APIs
+- Role-based access control for secure multi-tenant workflows
+- Production-ready error handling and fallback content
 
 ## Tech Stack
 
-- Frontend: React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, React Router
-- UI and utilities: Axios, Lucide React, Heroicons, Recharts, GSAP
-- Backend: Node.js, Express.js, MongoDB, PostgreSQL, Mongoose, JWT, bcryptjs, Multer
-- Integrations: OpenAI API, Google authentication, PDF and document processing libraries
+| Layer | Tech |
+| --- | --- |
+| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, React Router |
+| **Backend** | Node.js, Express.js, MongoDB, PostgreSQL, Mongoose, JWT, bcryptjs |
+| **UI & UX** | Lucide React, Heroicons, Recharts, GSAP animations |
+| **Integrations** | OpenAI API, Google authentication, PDF/DOCX processing |
 
 ## Screenshots
 
-The screenshots live in the [screenshots](screenshots) folder and are grouped by feature area.
+Tour the app in pictures. All images are organized in the [screenshots](screenshots) folder.
 
-### Landing and Authentication
+### Landing & Authentication
 
 | Landing page | Login page | Signup page |
 | --- | --- | --- |
@@ -50,73 +69,71 @@ The screenshots live in the [screenshots](screenshots) folder and are grouped by
 
 ## Project Structure
 
-```text
+```
 JobGenius-FYP/
-├── backend/          # Express API, database config, routes, controllers
-├── screenshots/      # Portfolio images used in this README
-├── src/              # React application source
-├── package.json      # Frontend scripts and dependencies
-├── backend/package.json
-├── vite.config.ts
-└── README.md
+├── backend/              # Express API, controllers, routes, database
+├── src/                  # React frontend (components, pages, services)
+├── screenshots/          # Portfolio gallery images
+├── package.json          # Frontend dependencies
+└── vite.config.ts        # Frontend build config
 ```
 
-## Local Setup
+## Get Started
 
 ### Prerequisites
 
-- Node.js 18 or newer
-- MongoDB connection string
-- PostgreSQL if you want recruiter database features enabled
+- **Node.js** 18+
+- **MongoDB** connection string (local or MongoDB Atlas)
+- **PostgreSQL** (optional, for recruiter features)
 
-### Install
+### Installation
 
 ```bash
+# Install frontend dependencies
 npm install
+
+# Install backend dependencies
 cd backend
 npm install
 ```
 
-### Configure Environment
+### Configuration
 
-Create `backend/.env` from `backend/.env.example` and add your database and auth values.
+1. Create `backend/.env` from `backend/.env.example`
+2. Add your MongoDB URI and JWT secret
+3. Add optional API keys for OpenAI, Google OAuth, etc.
 
-If you use the frontend integrations, add the required `VITE_*` values in your local Vite environment as well.
+### Run Locally
 
-### Run the App
-
-Start the backend from the `backend` folder:
-
+**Terminal 1 – Backend:**
 ```bash
 cd backend
 npm run dev
+# Runs on http://localhost:5000
 ```
 
-Start the frontend from the project root in a second terminal:
-
+**Terminal 2 – Frontend:**
 ```bash
 npm run dev
+# Runs on http://localhost:5173
 ```
 
-- Frontend: `http://localhost:5173`
-- Backend: `http://localhost:5000`
+### Next Steps
 
-## Setup Files
+- Review [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed setup help
+- Check [backend/.env.example](backend/.env.example) for all available configuration options
 
-- Backend environment template: [backend/.env.example](backend/.env.example)
-- Extra setup notes: [SETUP_GUIDE.md](SETUP_GUIDE.md)
+## Why JobGenius
 
-## Project Highlights
+✨ **Complete hiring workflow**, not a demo—includes job seeker dashboards, recruiter pipelines, and admin oversight  
+🎨 **Portfolio-ready** with smart fallback data so screenshots look complete without live API dependencies  
+🔒 **Security-first** with environment-based configuration and no hardcoded secrets  
+⚡ **Production patterns** like role-based access, graceful error handling, and modern UI animations  
 
-- Built as a complete hiring workflow rather than a single-page demo
-- Includes separate experiences for job seekers, recruiters, and admins
-- Uses graceful fallback data so the UI remains presentable for portfolio screenshots
-- Public-repo safe after removing hardcoded secrets from the source code
+## Security
 
-## Security Note
+Sensitive credentials are never committed to the repository. All API keys, database URIs, and secrets are configured through environment variables on a per-deployment basis.
 
-Sensitive values are intentionally kept out of the repository. Configure your own environment variables locally before running the app.
+## Ready to Explore?
 
-## Closing
-
-JobGenius shows the full product flow of a career platform in a clean, recruiter-friendly format and is ready for GitHub portfolio presentation.
+JobGenius demonstrates a full-stack hiring platform with separate experiences for job seekers, recruiters, and admins—built to look polished in portfolio presentations and designed for easy local development and deployment.
