@@ -269,7 +269,7 @@ When reviewing code, check for:
 
 - 💬 Open a GitHub Discussion
 - 🐛 Create an Issue
-- 📧 Email: support@jobgenius.com
+- 📧 Email: rehanahmed1208@gmail.com
 - 💡 Start a Discussion tab
 
 ## 📜 License
