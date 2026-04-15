@@ -1,276 +1,122 @@
-# JobGenius - Your Career Companion Platform
+# JobGenius FYP
 
-A comprehensive full-stack application for job seekers and recruiters, built with React, TypeScript, Node.js, and MongoDB.
+Career platform for job seekers, recruiters, and admins, built as a full-stack final year project with a polished portfolio demo experience.
 
-## 🚀 Features
+## Overview
 
-### For Job Seekers
-- **Resume Parsing**: Upload and parse resumes using AI (OpenAI)
-- **Job Marketplace**: Browse internships and job postings
-- **Profile Management**: Create and manage professional profiles
-- **Interview Tracking**: Track interviews and offers
-- **Cover Letter Generator**: AI-powered cover letter suggestions
-- **Job Notifications**: Real-time job alerts
+JobGenius is a hiring and profile management platform that brings together job discovery, applications, interviews, offers, recruiter workflows, and admin oversight in one system. The app is designed to be easy to demo, with fallback content where needed so the core experience still looks complete in screenshots and presentations.
 
-### For Recruiters
-- **Post Jobs**: Create and manage job postings
-- **Browse Profiles**: Search and view candidate profiles
-- **Manage Applications**: Review and track applications
-- **Interview Scheduling**: Schedule and manage interviews
-- **Offer Management**: Send and track job offers
+## Core Capabilities
 
-### For Admins
-- **User Management**: Manage user accounts and roles
-- **Analytics & Reports**: View platform analytics
-- **Content Moderation**: Monitor and manage content
-- **System Administration**: Overall platform management
+- Job seeker dashboard with profile insights, recommendations, applications, interviews, and offers
+- Recruiter dashboard for jobs, applicants, interviews, and offer management
+- Admin dashboard for platform-level summaries and user oversight
+- Authentication flows for login and signup
+- Resume and profile-related workflows supported through backend services and integrations
+- Portfolio-friendly demo states for sections that depend on external APIs
 
-## 📋 Prerequisites
+## Tech Stack
 
-Before running this project, ensure you have:
+- Frontend: React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, React Router
+- UI and utilities: Axios, Lucide React, Heroicons, Recharts, GSAP
+- Backend: Node.js, Express.js, MongoDB, PostgreSQL, Mongoose, JWT, bcryptjs, Multer
+- Integrations: OpenAI API, Google authentication, PDF and document processing libraries
 
-- **Node.js** (v18+)
-- **MongoDB** (v5+) - [Install](https://docs.mongodb.com/manual/installation/)
-- **PostgreSQL** (optional, for recruiter features) - [Install](https://www.postgresql.org/download/)
-- **npm** or **yarn** package manager
-- **Git** for version control
+## Screenshots
 
-## 🔧 Installation & Setup
+The screenshots live in the [screenshots](screenshots) folder and are grouped by feature area.
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/JobGenius-FYP.git
-cd JobGenius-FYP
-```
+### Landing and Authentication
 
-### 2. Backend Setup
+| Landing page | Login page | Signup page |
+| --- | --- | --- |
+| ![Landing page](screenshots/landing-page/landing_page.png) | ![Login page](screenshots/authentication/LoginPage.png) | ![Signup page](screenshots/authentication/signUp.png) |
 
-```bash
-# Navigate to backend folder
-cd backend
+### Job Seeker Experience
 
-# Install dependencies
-npm install
+| Dashboard | Jobs | Profile |
+| --- | --- | --- |
+| ![Job seeker dashboard](screenshots/jobseeker/Dashboard.png) | ![Jobs](screenshots/jobseeker/Jobs.png) | ![Profile](screenshots/jobseeker/profile.png) |
 
-# Create .env file (copy from .env.example)
-cp .env.example .env
+| Posts | Cover letter |
+| --- | --- |
+| ![Posts](screenshots/jobseeker/posts.png) | ![Cover letter](screenshots/jobseeker/coverLetter.png) |
 
-# Edit .env with your actual credentials
-# - MongoDB URI
-# - OpenAI API Key
-# - PostgreSQL credentials (optional)
-# - JWT Secret
-# - Google OAuth credentials (optional)
+### Recruiter and Admin
 
-# Start backend server (development mode with hot-reload)
-npm run dev
+| Recruiter dashboard | Admin dashboard |
+| --- | --- |
+| ![Recruiter dashboard](screenshots/recruiter/dashboard.png) | ![Admin dashboard](screenshots/admin/dashboard.png) |
 
-# Or start in production mode
-npm start
-```
+## Project Structure
 
-**Backend will run on:** `http://localhost:5000`
-
-### 3. Frontend Setup
-
-```bash
-# Navigate to root directory (if not already there)
-cd ..
-
-# Install dependencies
-npm install
-
-# Start frontend development server
-npm run dev
-```
-
-**Frontend will run on:** `http://localhost:5173`
-
-### 4. Access the Application
-
-- **Main App**: http://localhost:5173/
-- **Backend API**: http://localhost:5000/api/
-
-## 👥 Test Accounts
-
-### Job Seeker
-- **Email**: `jobseeker@example.com`
-- **Password**: `password123`
-- **Role**: Job Seeker
-
-### Recruiter
-- **Email**: `recruiter@example.com`
-- **Password**: `password123`
-- **Role**: Recruiter
-
-### Admin
-- **Email**: `admin@gmail.com`
-- **Password**: `123456`
-- **Role**: Admin
-
-## 📁 Project Structure
-
-```
+```text
 JobGenius-FYP/
-│
-├── backend/                    # Express.js API server
-│   ├── config/                # Database configurations
-│   ├── controllers/           # Route handlers
-│   ├── middleware/            # Custom middleware
-│   ├── models/                # MongoDB schemas
-│   ├── routes/                # API routes
-│   ├── uploads/               # User uploads (resumes, pictures)
-│   ├── .env.example          # Environment variables template
-│   └── server.js             # Entry point
-│
-├── src/                        # React + TypeScript Frontend
-│   ├── components/            # Reusable React components
-│   │   ├── admin/            # Admin-specific components
-│   │   ├── auth/             # Authentication components
-│   │   ├── layout/           # Layout components (Navbar, Footer)
-│   │   └── ui/               # UI components (Button, Card, etc)
-│   ├── context/              # Context API (Auth, Theme)
-│   ├── pages/                # Page components
-│   │   ├── admin/            # Admin dashboard pages
-│   │   ├── auth/             # Login/Signup pages
-│   │   ├── jobseeker/        # Job seeker pages
-│   │   └── recruiter/        # Recruiter pages
-│   ├── services/             # API services (axios)
-│   ├── types/                # TypeScript type definitions
-│   └── main.tsx              # React entry point
-│
-├── package.json              # Frontend dependencies
-├── vite.config.ts            # Vite configuration
-├── tailwind.config.js        # Tailwind CSS config
-└── index.html                # HTML entry point
+├── backend/          # Express API, database config, routes, controllers
+├── screenshots/      # Portfolio images used in this README
+├── src/              # React application source
+├── package.json      # Frontend scripts and dependencies
+├── backend/package.json
+├── vite.config.ts
+└── README.md
 ```
 
-## 🔌 API Endpoints
+## Local Setup
 
-### Authentication
-- `POST /api/auth/signup` - Register new user
-- `POST /api/auth/login` - Login user
-- `POST /api/auth/google` - Google OAuth login
+### Prerequisites
 
-### Jobs (Job Seeker)
-- `GET /api/jobs` - List all jobs
-- `GET /api/jobs/:id` - Get job details
-- `POST /api/jobs/:id/apply` - Apply for job
+- Node.js 18 or newer
+- MongoDB connection string
+- PostgreSQL if you want recruiter database features enabled
 
-### Profile
-- `GET /api/profile` - Get user profile
-- `PUT /api/profile` - Update profile
-- `POST /api/profile/upload-picture` - Upload profile picture
+### Install
 
-### Recruiter
-- `POST /api/recruiter/post` - Create job posting
-- `GET /api/recruiter/applications` - Get applications
-- `PUT /api/recruiter/offers/:id` - Send offer
-
-### Admin
-- `GET /api/admin/users` - List all users
-- `GET /api/admin/reports` - Get analytics
-- `PUT /api/admin/users/:id/status` - Change user status
-
-## 🛠️ Technology Stack
-
-### Frontend
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool & dev server
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **React Router** - Navigation
-- **Axios** - HTTP client
-- **Lucide React** - Icons
-
-### Backend
-- **Express.js** - Web framework
-- **Node.js** - Runtime
-- **MongoDB** - NoSQL database
-- **Mongoose** - ODM for MongoDB
-- **PostgreSQL** - SQL database (optional)
-- **JWT** - Authentication
-- **bcryptjs** - Password hashing
-- **OpenAI API** - Resume parsing & AI features
-
-## 📝 Development Scripts
-
-### Frontend
 ```bash
-npm run dev        # Start dev server
-npm run build      # Build for production
-npm run lint       # Run ESLint
-npm run preview    # Preview production build
+npm install
+cd backend
+npm install
 ```
 
-### Backend
+### Configure Environment
+
+Create `backend/.env` from `backend/.env.example` and add your database and auth values.
+
+If you use the frontend integrations, add the required `VITE_*` values in your local Vite environment as well.
+
+### Run the App
+
+Start the backend from the `backend` folder:
+
 ```bash
-npm run dev        # Start with nodemon (hot-reload)
-npm start          # Start production server
+cd backend
+npm run dev
 ```
 
-## 🔐 Environment Variables Guide
+Start the frontend from the project root in a second terminal:
 
-See [backend/.env.example](backend/.env.example) for all required environment variables.
+```bash
+npm run dev
+```
 
-**Critical variables:**
-- `MONGO_URI` - MongoDB connection string
-- `JWT_SECRET` - Secret key for JWT tokens
-- `OPENAI_API_KEY` - OpenAI API key for resume parsing
-- `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` - For Google OAuth
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000`
 
-## 🚀 Deployment
+## Setup Files
 
-### Frontend (Vercel)
-1. Push to GitHub
-2. Connect to Vercel
-3. Deploy automatically
+- Backend environment template: [backend/.env.example](backend/.env.example)
+- Extra setup notes: [SETUP_GUIDE.md](SETUP_GUIDE.md)
 
-### Backend (Render / Railway / Heroku)
-1. Set environment variables
-2. Deploy from GitHub
-3. Update API URL in frontend `.env`
+## Project Highlights
 
-## 📸 Screenshots
+- Built as a complete hiring workflow rather than a single-page demo
+- Includes separate experiences for job seekers, recruiters, and admins
+- Uses graceful fallback data so the UI remains presentable for portfolio screenshots
+- Public-repo safe after removing hardcoded secrets from the source code
 
-Screenshots are available in the `screenshots/` folder:
-- `landing-page.png` - Landing page
-- `login-signup.png` - Authentication pages
-- `jobseeker-dashboard.png` - Job seeker dashboard
-- `recruiter-dashboard.png` - Recruiter dashboard
-- `admin-dashboard.png` - Admin dashboard
+## Security Note
 
-## 🤝 Contributing
+Sensitive values are intentionally kept out of the repository. Configure your own environment variables locally before running the app.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Closing
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## ✉️ Contact
-
-For questions or support, please reach out to:
-- **Email**: support@jobgenius.com
-- **GitHub Issues**: [Create an issue](https://github.com/yourusername/JobGenius-FYP/issues)
-
-## 🎯 Future Enhancements
-
-- [ ] Video interview integration
-- [ ] Advanced analytics dashboard
-- [ ] Mobile app (React Native)
-- [ ] Real-time chat messaging
-- [ ] AI skill assessment
-- [ ] Integration with LinkedIn
-- [ ] Salary predictions
-- [ ] Company reviews
-
----
-
-**Last Updated**: April 2026
-**Version**: 1.0.0
+JobGenius shows the full product flow of a career platform in a clean, recruiter-friendly format and is ready for GitHub portfolio presentation.
