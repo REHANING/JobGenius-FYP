@@ -1,0 +1,194 @@
+// src/services/pdfService.ts
+// Using pdfmake which is Vite-compatible and doesn't have module resolution issues
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+// Initialize pdfmake with fonts
+if ((pdfMake as any).vfs === undefined) {
+  (pdfMake as any).vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts;
+}
+
+export interface ProfileData {
+  name: string;
+  email: string;
+  phone: string;
+  bio: string;
+  education: Array<{
+    degree: string;
+    institute: string;
+    year: string;
+  }>;
+  experience: Array<{
+    title: string;
+    company: string;
+    duration: string;
+  }>;
+  skills: string[];
+  certificates: Array<{
+    name: string;
+    issuer: string;
+    date: string;
+    credentialId?: string;
+  }>;
+}
+
+export const generateCVPDF = (profile: ProfileData): void => {
+  // Build the document definition for pdfmake
+  const docDefinition: any = {
+    content: [
+      // Header
+      {
+        text: profile.name || 'Professional',
+        style: 'header',
+        margin: [0, 0, 0, 10],
+      },
+      {
+        columns: [
+          profile.email ? { text: profile.email, style: 'contact' } : '',
+          profile.phone ? { text: profile.phone, style: 'contact', alignment: 'right' } : '',
+        ].filter(Boolean),
+        margin: [0, 0, 0, 20],
+      },
+      
+      // Professional Summary
+      ...(profile.bio && profile.bio.trim()
+        ? [
+            {
+              text: 'PROFESSIONAL SUMMARY',
+              style: 'sectionHeader',
+              margin: [0, 10, 0, 5],
+            },
+            {
+              text: profile.bio,
+              style: 'body',
+              margin: [0, 0, 0, 15],
+            },
+          ]
+        : []),
+
+      // Education
+      ...(profile.education && profile.education.length > 0
+        ? [
+            {
+              text: 'EDUCATION',
+              style: 'sectionHeader',
+              margin: [0, 10, 0, 5],
+            },
+            ...profile.education
+              .filter((edu) => edu.degree || edu.institute)
+              .map((edu) => ({
+                text: [
+                  { text: edu.degree || '', style: 'bold' },
+                  edu.institute ? ` - ${edu.institute}` : '',
+                  edu.year ? ` (${edu.year})` : '',
+                ],
+                margin: [0, 0, 0, 5],
+              })),
+            { text: '', margin: [0, 0, 0, 10] },
+          ]
+        : []),
+
+      // Experience
+      ...(profile.experience && profile.experience.length > 0
+        ? [
+            {
+              text: 'EXPERIENCE',
+              style: 'sectionHeader',
+              margin: [0, 10, 0, 5],
+            },
+            ...profile.experience
+              .filter((exp) => exp.title || exp.company)
+              .map((exp) => ({
+                text: [
+                  { text: exp.title || '', style: 'bold' },
+                  exp.company ? ` at ${exp.company}` : '',
+                  exp.duration ? ` (${exp.duration})` : '',
+                ],
+                margin: [0, 0, 0, 5],
+              })),
+            { text: '', margin: [0, 0, 0, 10] },
+          ]
+        : []),
+
+      // Skills
+      ...(profile.skills && profile.skills.length > 0
+        ? [
+            {
+              text: 'SKILLS',
+              style: 'sectionHeader',
+              margin: [0, 10, 0, 5],
+            },
+            {
+              text: profile.skills.filter((s) => s.trim()).join(' • '),
+              style: 'body',
+              margin: [0, 0, 0, 10],
+            },
+          ]
+        : []),
+
+      // Certificates
+      ...(profile.certificates && profile.certificates.length > 0
+        ? [
+            {
+              text: 'CERTIFICATIONS',
+              style: 'sectionHeader',
+              margin: [0, 10, 0, 5],
+            },
+            ...profile.certificates
+              .filter((cert) => cert.name)
+              .map((cert) => ({
+                text: [
+                  { text: cert.name || '', style: 'bold' },
+                  cert.issuer ? ` - ${cert.issuer}` : '',
+                  cert.date ? ` (${cert.date})` : '',
+                  cert.credentialId ? ` [ID: ${cert.credentialId}]` : '',
+                ],
+                margin: [0, 0, 0, 5],
+              })),
+          ]
+        : []),
+    ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        alignment: 'left',
+      },
+      contact: {
+        fontSize: 10,
+        color: '#333333',
+      },
+      sectionHeader: {
+        fontSize: 13,
+        bold: true,
+        decoration: 'underline',
+        color: '#000000',
+      },
+      bold: {
+        bold: true,
+      },
+      body: {
+        fontSize: 11,
+        lineHeight: 1.5,
+      },
+    },
+    defaultStyle: {
+      font: 'Roboto',
+      fontSize: 11,
+    },
+    footer: (currentPage: number, pageCount: number) => ({
+      text: 'Generated by Job Genius Platform',
+      alignment: 'right',
+      fontSize: 8,
+      italics: true,
+      margin: [0, 10, 20, 0],
+    }),
+    pageMargins: [40, 60, 40, 60],
+  };
+
+  // Generate and download the PDF
+  const fileName = `${(profile.name || 'Professional').replace(/\s+/g, '_')}_CV.pdf`;
+  pdfMake.createPdf(docDefinition).download(fileName);
+};
+
+export default generateCVPDF;
